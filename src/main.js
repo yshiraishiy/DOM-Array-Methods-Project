@@ -26,6 +26,17 @@ async function getRandomUser() {
   addData(newUser);
 }
 
+// 全員の金額を2倍にする
+function doubleMoney() {
+  data = data.map((user) => {
+    return {...user, money: user.money * 2}
+  })
+
+  console.log(data)
+
+  updateDOM()
+}
+
 // 新しいオブジェクトを配列に追加
 function addData(obj) {
   data.push(obj);
@@ -54,3 +65,4 @@ function formatMoney(number) {
 
 // イベントリスナー
 addUserBtn.addEventListener("click", getRandomUser);
+doubleBtn.addEventListener("click", doubleMoney);
