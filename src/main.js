@@ -55,6 +55,21 @@ function showMillionaires() {
   updateDOM();
 }
 
+// 合計金額を計算
+function calculateWealth() {
+  const wealth = data.reduce((acc, user) => {
+    return (acc += user.money);
+  }, 0);
+
+  console.log(wealth);
+
+  const wealthEl = document.createElement("div");
+  wealthEl.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
+    wealth
+  )}</strong></h3>`;
+  main.appendChild(wealthEl);
+}
+
 // 新しいオブジェクトを配列に追加
 function addData(obj) {
   data.push(obj);
@@ -86,3 +101,4 @@ addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
 sortBtn.addEventListener("click", sortByRichest);
 showMillionairesBtn.addEventListener("click", showMillionaires);
+calculateWealthBtn.addEventListener("click", calculateWealth);
