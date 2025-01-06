@@ -8,6 +8,8 @@ const calculateWealthBtn = document.getElementById("calculate-wealth");
 let data = [];
 
 getRandomUser();
+getRandomUser();
+getRandomUser();
 
 // フェッチでランダムなユーザーを取得し金額を取得
 async function getRandomUser() {
@@ -18,14 +20,37 @@ async function getRandomUser() {
 
   const newUser = {
     name: `${user.name.first} ${user.name.last}`,
-    money: Math.floor(Math.random() * 1000000)
-  }
+    money: Math.floor(Math.random() * 1000000),
+  };
 
-  addData(newUser)
+  addData(newUser);
 }
 
 // 新しいオブジェクトを配列に追加
 function addData(obj) {
-  data.push(obj)
-  console.log(data)
+  data.push(obj);
+
+  updateDOM();
 }
+
+// DOMを更新
+function updateDOM(providedData = data) {
+  main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+
+  providedData.forEach(function (item) {
+    const element = document.createElement("div");
+    element.classList.add("person");
+    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(
+      item.money
+    )}`;
+    main.appendChild(element);
+  });
+}
+
+// 金額を形式化する
+function formatMoney(number) {
+  return "$" + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+}
+
+// イベントリスナー
+addUserBtn.addEventListener("click", getRandomUser);
