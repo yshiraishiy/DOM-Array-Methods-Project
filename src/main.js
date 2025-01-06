@@ -46,6 +46,15 @@ function sortByRichest() {
   updateDOM();
 }
 
+// 百万長者のみをフィルター
+function showMillionaires() {
+  data = data.filter((user) => {
+    return user.money > 1000000;
+  });
+
+  updateDOM();
+}
+
 // 新しいオブジェクトを配列に追加
 function addData(obj) {
   data.push(obj);
@@ -76,3 +85,4 @@ function formatMoney(number) {
 addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
 sortBtn.addEventListener("click", sortByRichest);
+showMillionairesBtn.addEventListener("click", showMillionaires);
