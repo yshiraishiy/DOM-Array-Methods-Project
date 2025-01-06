@@ -29,12 +29,21 @@ async function getRandomUser() {
 // 全員の金額を2倍にする
 function doubleMoney() {
   data = data.map((user) => {
-    return {...user, money: user.money * 2}
-  })
+    return { ...user, money: user.money * 2 };
+  });
 
-  console.log(data)
+  console.log(data);
 
-  updateDOM()
+  updateDOM();
+}
+
+// 金額が高い順に並び替え
+function sortByRichest() {
+  data.sort((a, b) => {
+    return b.money - a.money;
+  });
+
+  updateDOM();
 }
 
 // 新しいオブジェクトを配列に追加
@@ -66,3 +75,4 @@ function formatMoney(number) {
 // イベントリスナー
 addUserBtn.addEventListener("click", getRandomUser);
 doubleBtn.addEventListener("click", doubleMoney);
+sortBtn.addEventListener("click", sortByRichest);
