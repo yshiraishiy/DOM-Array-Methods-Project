@@ -57,6 +57,9 @@ function showMillionaires() {
 
 // 合計金額を計算
 function calculateWealth() {
+  if (document.getElementById("total-wealth")) {
+    return; 
+  }
   const wealth = data.reduce((acc, user) => {
     return (acc += user.money);
   }, 0);
@@ -64,6 +67,7 @@ function calculateWealth() {
   console.log(wealth);
 
   const wealthEl = document.createElement("div");
+  wealthEl.id = "total-wealth";
   wealthEl.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
     wealth
   )}</strong></h3>`;
